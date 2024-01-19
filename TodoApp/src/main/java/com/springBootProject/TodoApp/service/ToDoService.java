@@ -24,7 +24,7 @@ public class ToDoService {
                         "User of ID NO " + id + " not found"
                 ));
     }
-    public Todo saveToDo(Todo todo){
+    public Todo addToDo(Todo todo){
         return toDoRepository.save(todo);
     }
     public Todo updateTodo(Todo todo){
