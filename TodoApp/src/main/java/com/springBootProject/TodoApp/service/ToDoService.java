@@ -27,11 +27,11 @@ public class ToDoService {
     public Todo addToDo(Todo todo){
         return toDoRepository.save(todo);
     }
-    public Todo updateTodo(Todo todo){
+    public Todo updateTodo(Long id, Todo todo){
 
-        Todo existingTodo = toDoRepository.findById(todo.getId())
+        Todo existingTodo = toDoRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(
-                        "User not found"
+                        "User of ID NO " + id +" not found"
                 ));
         existingTodo.setTitle(todo.getTitle());
         existingTodo.setDate(todo.getDate());
