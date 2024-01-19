@@ -39,4 +39,9 @@ public class ToDoService {
 
         return toDoRepository.save(existingTodo);
     }
+
+    public String deleteTodo(Long id) {
+        toDoRepository.deleteById(id);
+        return "Task by ID no" + id + "has been deleted successfully!";
+    }
 }
