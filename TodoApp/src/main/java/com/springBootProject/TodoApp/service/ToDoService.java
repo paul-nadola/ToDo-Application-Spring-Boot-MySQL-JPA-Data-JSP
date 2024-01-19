@@ -40,6 +40,19 @@ public class ToDoService {
         return toDoRepository.save(existingTodo);
     }
 
+    public boolean updateToDoStatus(Long id) {
+        Todo todo = getToDoById(id);
+        todo.setStatus("Completed");
+        
+        return saveOrUpdateToDo(todo);
+    }
+
+    public boolean saveOrUpdateToDo(Todo todo) {
+        Todo updatedToDo = toDoRepository.save(todo);
+
+        return getToDoById(updatedToDo.getId()) != null;
+    }
+
     public String deleteTodo(Long id) {
         toDoRepository.deleteById(id);
         return "Task by ID no" + id + "has been deleted successfully!";
