@@ -5,6 +5,7 @@ import com.springBootProject.TodoApp.models.Todo;
 import com.springBootProject.TodoApp.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -27,13 +28,23 @@ public class ToDoController {
         return toDoService.addToDo(todo);
     }
 
+//    @PostMapping("/updateStatus/{id}")
+//    public String updateToDoStatus(@PathVariable Long id, RedirectAttributes redirectAttributes){
+//        if (toDoService.updateToDoStatus(id)){
+//            redirectAttributes.addFlashAttribute("message", "Update Success");
+//            return "redirect:/todo";
+//        }
+//        redirectAttributes.addFlashAttribute("message", "Update Failure");
+//        return "redirect:/todo";
+//    }
+
     @PutMapping("/update/{id}")
     public Todo updateToDo(@PathVariable Long id, @RequestBody Todo todo) {
         return toDoService.updateTodo(id, todo);
     }
     @DeleteMapping("/delete/{id}")
     public String deleteToDo(@PathVariable Long id) {
-        toDoService.deleteTodo(id);
-        return "User of ID NO " + id + " has been deleted successfully";
+        return toDoService.deleteTodo(id);
+//        return "User of ID NO " + id + " has been deleted successfully";
     }
 }

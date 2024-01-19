@@ -4,6 +4,7 @@ package com.springBootProject.TodoApp.service;
 import com.springBootProject.TodoApp.Repository.ToDoRepository;
 import com.springBootProject.TodoApp.exceptions.UserNotFoundException;
 import com.springBootProject.TodoApp.models.Todo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,10 @@ public class ToDoService {
                 .orElseThrow(() -> new UserNotFoundException(
                         "User of ID NO " + id +" not found"
                 ));
-        existingTodo.setTitle(todo.getTitle());
-        existingTodo.setDate(todo.getDate());
-        existingTodo.setStatus(todo.getStatus());
+//        existingTodo.setTitle(todo.getTitle());
+//        existingTodo.setDate(todo.getDate());
+//        existingTodo.setStatus(todo.getStatus());
+        BeanUtils.copyProperties(todo, existingTodo, "id");
 
         return toDoRepository.save(existingTodo);
     }
